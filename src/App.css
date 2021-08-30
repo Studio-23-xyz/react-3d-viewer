@@ -12,7 +12,10 @@
 	color: #009fdb !important;
 	font-weight: bold;
 }
-
+.canvas-style {
+	width: 641px;
+	height: 511.667px !important;
+}
 .bc1,
 .bc2,
 .bc3,
