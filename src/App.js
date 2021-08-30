@@ -1,59 +1,62 @@
 import { Accordion, Col, Container, Row } from 'react-bootstrap';
-import { Canvas } from "react-three-fiber";
-import { OrbitControls } from "drei"
-import { Physics } from "use-cannon";
+import { Canvas } from 'react-three-fiber';
+import { render } from '@react-three/fiber';
+import { OrbitControls } from 'drei';
+import { Physics } from 'use-cannon';
 import './App.css';
-
-
-function Box() {
-	//const [ref, api] = useBox(() => ({ mass: 1, position: [0, 2, 0] }));
-	return (
-	  <mesh
-	  >
-		<boxBufferGeometry attach="geometry" />
-		<meshLambertMaterial attach="material" color="hotpink" />
-	  </mesh>
-	);
-  }
-
-  
-  var zoom = 50,
-  	  autoRotate = true,
-  	  rotSpeed = 5,
-	  // rotBottom = 32, //Descending from 32 to 1 for bottom view
-	 //  rotTop = 1, //Ascending from 1 to 32 for top view
-  	  zoomEnable = true;
+import { useState } from 'react';
+import { useEffect } from 'react';
+// rotBottom = 32, //Descending from 32 to 1 for bottom view
+//  rotTop = 1, //Ascending from 1 to 32 for top view
 
 function App() {
+	// const [autoRotate, setAutoRotate] = useState(true);
+	const [enableRotation, setEnableRotation] = useState(true);
+	const [rotationSpeed, setRotationSpeed] = useState(50);
+	const [rotationLimit, setRotationLimit] = useState(2);
+	const [zoomEnable, setZoomEnable] = useState(true);
+	const [zoomLimit, setZoomLimit] = useState(50);
+	const [background, setBackground] = useState('#198754');
+
+	function Box() {
+		//const [ref, api] = useBox(() => ({ mass: 1, position: [0, 2, 0] }));
+		return (
+			<mesh>
+				<boxBufferGeometry attach="geometry" />
+				<meshLambertMaterial attach="material" color="hotpink" />
+			</mesh>
+		);
+	}
+
 	return (
 		<div>
 			<Container>
-				<h1 align="center" className="mb-3">
+				<h1 align="center" className="mb-3" style={{ color: background }}>
 					3d Viewer
 				</h1>
 				<Row>
 					<Col md="7">
 						<Canvas
+							style={{ background: background }}
 							id="renderCanvas"
-							width="650px"
-							height="740"
-							className="bg-info"
-							camera={{ position: [0, 0, 4], fov: zoom }}>
-							
+							width="650"
+							height="600"
+							className="canvas-style"
+							camera={{ position: [0, 0, 4], fov: zoomLimit }}
+						>
 							<ambientLight intensity={0.5} />
-							<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1}  />
+							<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
 							<Physics>
-							<OrbitControls 
-								minPolarAngle={Math.PI/32 } 
-								maxPolarAngle={Math.PI } 
-								enableZoom={zoomEnable} 
-								autoRotate={autoRotate} 
-								autoRotateSpeed = {rotSpeed}
-							/>
-							<Box />
+								<OrbitControls
+									minPolarAngle={Math.PI / rotationLimit}
+									maxPolarAngle={Math.PI / 10}
+									enableZoom={zoomEnable}
+									autoRotate={enableRotation}
+									autoRotateSpeed={rotationSpeed}
+								/>
+								<Box />
 							</Physics>
 						</Canvas>
-						
 					</Col>
 					<Col md="5">
 						<div className="config-section-header">
@@ -70,11 +73,11 @@ function App() {
 										<Col md="4" className="d-flex justify-content-end">
 											<div className="form-check form-switch">
 												<input
-													onchange="rotation()"
+													onChange={() => setEnableRotation(!enableRotation)}
 													className="form-check-input"
 													type="checkbox"
 													id="autoRotationControl"
-													checked
+													checked={enableRotation}
 												/>
 											</div>
 										</Col>
@@ -84,38 +87,29 @@ function App() {
 										<input
 											type="range"
 											className="form-range"
-											value="1"
-											onChange="rotationSpeed()"
-											min="-2.5"
-											max="2.5"
-											step="0.5"
+											value={rotationSpeed}
+											onChange={(e) =>
+												setRotationSpeed(parseInt(e.target.value))
+											}
+											min="5"
+											max="100"
+											step="5"
 											id="rotation_speed"
 										/>
 									</div>
-									<div className="rotation_top_limit">
-										<p className="mb-1">Rotation top limit</p>
+									<div className="rotation_limit">
+										<p className="mb-1">Rotation View Angle</p>
 										<input
 											type="range"
 											className="form-range"
-											value="1.5"
-											onChange="rotationTopLimit()"
-											min="-1"
-											max="4"
-											step="0.5"
-											id="rotation_top_limit"
-										/>
-									</div>
-									<div className="rotation_bottom_limit">
-										<p className="mb-1">Rotation bottom limit</p>
-										<input
-											type="range"
-											className="form-range"
-											value="2.5"
-											onChange="rotationBottomLimit()"
-											min="0"
-											max="5"
-											step="0.5"
-											id="rotation_bottom_limit"
+											value={rotationLimit}
+											onChange={(e) =>
+												setRotationLimit(parseInt(e.target.value))
+											}
+											min="1"
+											max="32"
+											step="2"
+											id="rotation_limit"
 										/>
 									</div>
 								</Accordion.Body>
@@ -130,39 +124,27 @@ function App() {
 										<Col md="4" className="d-flex justify-content-end">
 											<div className="form-check form-switch">
 												<input
-													onchange="rotation()"
+													onChange={() => setZoomEnable(!zoomEnable)}
 													className="form-check-input"
 													type="checkbox"
 													id="ZoomControl"
-													checked
+													checked={zoomEnable}
 												/>
 											</div>
 										</Col>
 									</Row>
-									<div className="zoom_in_limit">
-										<p className="mb-1">Zoom in limit</p>
+									<div className="zoom_limit">
+										<p className="mb-1">Zoom limit</p>
 										<input
+											onChange={(e) => setZoomLimit(parseInt(e.target.value))}
 											type="range"
 											className="form-range"
-											value="-1"
-											onChange="zoomInLimit()"
-											min="-1"
-											max="-0.1"
-											step="0.15"
-											id="zoom_in_limit"
-										/>
-									</div>
-									<div className="zoom_out_limit">
-										<p className="mb-1">Zoom out limit</p>
-										<input
-											type="range"
-											className="form-range"
-											value="0.5"
-											onChange="zoomOutLimit()"
-											min="0.5"
-											max="1.2"
-											step="0.1"
-											id="zoom_out_limit"
+											value={zoomLimit}
+											// onChange="zoomInLimit()"
+											min="10"
+											max="200"
+											step="10"
+											id="zoom_limit"
 										/>
 									</div>
 								</Accordion.Body>
@@ -210,27 +192,27 @@ function App() {
 										<div className="background_colors">
 											<div
 												className="bc1 bg-info"
-												onclick="backGround('0.529', '0.808', '0.922')"
+												onClick={() => setBackground('#0dcaf0')}
 											></div>
 											<div
 												className="bc2 bg-danger"
-												onclick="backGround('0.5', '0', '0')"
+												onClick={() => setBackground('#dc3545')}
 											></div>
 											<div
 												className="bc3 bg-secondary"
-												onclick="backGround('0.502', '0.502', '0.502')"
+												onClick={() => setBackground('#6c757d')}
 											></div>
 											<div
 												className="bc4 bg-primary"
-												onclick="backGround('0.255', '0.412', '0.882')"
+												onClick={() => setBackground('#0d6efd')}
 											></div>
 											<div
 												className="bc4 bg-success"
-												onclick="backGround('0.18', '0.545', '0.341')"
+												onClick={() => setBackground('#198754')}
 											></div>
 											<div
 												className="bc4 bg-warning"
-												onclick="backGround('1', '1', '0.5')"
+												onClick={() => setBackground('#ffc107')}
 											></div>
 										</div>
 									</div>
