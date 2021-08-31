@@ -1,11 +1,9 @@
 import { Accordion, Col, Container, Row } from 'react-bootstrap';
 import { Canvas } from 'react-three-fiber';
-import { render } from '@react-three/fiber';
 import { OrbitControls } from 'drei';
 import { Physics } from 'use-cannon';
 import './App.css';
 import { useState } from 'react';
-import { useEffect } from 'react';
 // rotBottom = 32, //Descending from 32 to 1 for bottom view
 //  rotTop = 1, //Ascending from 1 to 32 for top view
 
@@ -13,11 +11,21 @@ function App() {
 	// const [autoRotate, setAutoRotate] = useState(true);
 	const [enableRotation, setEnableRotation] = useState(true);
 	const [rotationSpeed, setRotationSpeed] = useState(50);
-	const [rotationLimit, setRotationLimit] = useState(2);
+	const [rotationLimit, setRotationLimit] = useState({
+		max: 32,
+		min: 2,
+	});
 	const [zoomEnable, setZoomEnable] = useState(true);
 	const [zoomLimit, setZoomLimit] = useState(50);
-	const [background, setBackground] = useState('#198754');
+	const [background, setBackground] = useState('#0dcaf0');
 
+	const rotationLimitControl = (e) => {
+		setRotationLimit({
+			max: 32 - e,
+			min: e,
+		});
+		console.log(rotationLimit);
+	};
 	function Box() {
 		//const [ref, api] = useBox(() => ({ mass: 1, position: [0, 2, 0] }));
 		return (
@@ -48,8 +56,8 @@ function App() {
 							<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
 							<Physics>
 								<OrbitControls
-									minPolarAngle={Math.PI / rotationLimit}
-									maxPolarAngle={Math.PI / 10}
+									minPolarAngle={Math.PI / rotationLimit.max}
+									maxPolarAngle={Math.PI / rotationLimit.min}
 									enableZoom={zoomEnable}
 									autoRotate={enableRotation}
 									autoRotateSpeed={rotationSpeed}
@@ -102,11 +110,11 @@ function App() {
 										<input
 											type="range"
 											className="form-range"
-											value={rotationLimit}
+											value={rotationLimit.min}
 											onChange={(e) =>
-												setRotationLimit(parseInt(e.target.value))
+												rotationLimitControl(parseInt(e.target.value))
 											}
-											min="1"
+											min="2"
 											max="32"
 											step="2"
 											id="rotation_limit"
@@ -149,39 +157,7 @@ function App() {
 									</div>
 								</Accordion.Body>
 							</Accordion.Item>
-							<Accordion.Item eventKey="2">
-								<Accordion.Header className="according-btn">
-									Shadow
-								</Accordion.Header>
-								<Accordion.Body>
-									<Row className="mb-2">
-										<Col md="8">Shadow Enable</Col>
-										<Col md="4" className="d-flex justify-content-end">
-											<div className="form-check form-switch">
-												<input
-													onchange="rotation()"
-													className="form-check-input"
-													type="checkbox"
-													id="shadowControl"
-													checked
-												/>
-											</div>
-										</Col>
-									</Row>
-									<div className="shadow_blur">
-										<p className="mb-1">Shadow blur</p>
-										<input
-											type="range"
-											className="form-range"
-											value="2"
-											min="0"
-											max="5"
-											step="0.5"
-											id="shadow_blur"
-										/>
-									</div>
-								</Accordion.Body>
-							</Accordion.Item>
+
 							<Accordion.Item eventKey="3">
 								<Accordion.Header className="according-btn">
 									Background
