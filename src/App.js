@@ -1,4 +1,4 @@
-import { Accordion, Col, Container, Row } from 'react-bootstrap';
+import { Accordion, Col, Container, Form, Row } from 'react-bootstrap';
 import { Canvas, useLoader } from 'react-three-fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import model from './Models/testfile.glb';
@@ -11,7 +11,7 @@ function App() {
 	console.log(model);
 	// const [autoRotate, setAutoRotate] = useState(true);
 	const [enableRotation, setEnableRotation] = useState(true);
-	const [rotationSpeed, setRotationSpeed] = useState(20);
+	const [rotationSpeed, setRotationSpeed] = useState(10);
 	const [rotationLimit, setRotationLimit] = useState({
 		max: 32,
 		min: 2,
@@ -99,8 +99,8 @@ function App() {
 											onChange={(e) =>
 												setRotationSpeed(parseInt(e.target.value))
 											}
-											min="5"
-											max="100"
+											min="-50"
+											max="50"
 											step="5"
 											id="rotation_speed"
 										/>
@@ -191,6 +191,19 @@ function App() {
 												onClick={() => setBackground('#ffc107')}
 											></div>
 										</div>
+									</div>
+								</Accordion.Body>
+							</Accordion.Item>
+							<Accordion.Item eventKey="4">
+								<Accordion.Header className="according-btn">
+									Upload A model
+								</Accordion.Header>
+								<Accordion.Body>
+									<div className="upload_model">
+										<Form.Group controlId="formFile" className="mb-3">
+											<Form.Label>Upload a glb file</Form.Label>
+											<Form.Control type="file" />
+										</Form.Group>
 									</div>
 								</Accordion.Body>
 							</Accordion.Item>
