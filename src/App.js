@@ -1,15 +1,14 @@
 import { Accordion, Col, Container, Row } from 'react-bootstrap';
-import { Canvas, useLoader  } from 'react-three-fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import model from './model.glb'
+import { Canvas, useLoader } from 'react-three-fiber';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import model from './Models/testfile.glb';
 import { OrbitControls } from 'drei';
 import { Physics } from 'use-cannon';
 import './App.css';
 import { useState } from 'react';
-// rotBottom = 32, //Descending from 32 to 1 for bottom view
-//  rotTop = 1, //Ascending from 1 to 32 for top view
 
 function App() {
+	console.log(model);
 	// const [autoRotate, setAutoRotate] = useState(true);
 	const [enableRotation, setEnableRotation] = useState(true);
 	const [rotationSpeed, setRotationSpeed] = useState(20);
@@ -32,18 +31,8 @@ function App() {
 
 	function Model({ url }) {
 		const gltf = useLoader(GLTFLoader, model);
-		return <primitive object={gltf.scene} position={[0,-1,0]}  />;
-	  }
-	function Box() {
-		//const [ref, api] = useBox(() => ({ mass: 1, position: [0, 2, 0] }));
-		return (
-			<mesh>
-				<boxBufferGeometry attach="geometry" />
-				<meshLambertMaterial attach="material" color="hotpink" />
-			</mesh>
-		);
+		return <primitive object={gltf.scene} position={[0, -1, 0]} />;
 	}
-
 
 	return (
 		<div>
@@ -72,7 +61,7 @@ function App() {
 									autoRotateSpeed={rotationSpeed}
 								/>
 								<mesh>
-								<Model />
+									<Model />
 								</mesh>
 							</Physics>
 						</Canvas>
