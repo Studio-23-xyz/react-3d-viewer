@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/react-3d-viewer/static/css/main.841fac94.chunk.css",
-    "main.js": "/react-3d-viewer/static/js/main.c966cec9.chunk.js",
-    "main.js.map": "/react-3d-viewer/static/js/main.c966cec9.chunk.js.map",
-    "runtime-main.js": "/react-3d-viewer/static/js/runtime-main.83d4faed.js",
-    "runtime-main.js.map": "/react-3d-viewer/static/js/runtime-main.83d4faed.js.map",
+    "main.js": "/react-3d-viewer/static/js/main.dde6fdaa.chunk.js",
+    "main.js.map": "/react-3d-viewer/static/js/main.dde6fdaa.chunk.js.map",
+    "runtime-main.js": "/react-3d-viewer/static/js/runtime-main.080db1de.js",
+    "runtime-main.js.map": "/react-3d-viewer/static/js/runtime-main.080db1de.js.map",
     "static/css/2.818011ed.chunk.css": "/react-3d-viewer/static/css/2.818011ed.chunk.css",
-    "static/js/2.e6fd91a2.chunk.js": "/react-3d-viewer/static/js/2.e6fd91a2.chunk.js",
-    "static/js/2.e6fd91a2.chunk.js.map": "/react-3d-viewer/static/js/2.e6fd91a2.chunk.js.map",
-    "static/js/3.434115aa.chunk.js": "/react-3d-viewer/static/js/3.434115aa.chunk.js",
-    "static/js/3.434115aa.chunk.js.map": "/react-3d-viewer/static/js/3.434115aa.chunk.js.map",
-    "static/js/4.b732e76e.chunk.js": "/react-3d-viewer/static/js/4.b732e76e.chunk.js",
-    "static/js/4.b732e76e.chunk.js.map": "/react-3d-viewer/static/js/4.b732e76e.chunk.js.map",
+    "static/js/2.b8f0112d.chunk.js": "/react-3d-viewer/static/js/2.b8f0112d.chunk.js",
+    "static/js/2.b8f0112d.chunk.js.map": "/react-3d-viewer/static/js/2.b8f0112d.chunk.js.map",
+    "static/js/3.db68bff5.chunk.js": "/react-3d-viewer/static/js/3.db68bff5.chunk.js",
+    "static/js/3.db68bff5.chunk.js.map": "/react-3d-viewer/static/js/3.db68bff5.chunk.js.map",
+    "static/js/4.24851fd6.chunk.js": "/react-3d-viewer/static/js/4.24851fd6.chunk.js",
+    "static/js/4.24851fd6.chunk.js.map": "/react-3d-viewer/static/js/4.24851fd6.chunk.js.map",
     "index.html": "/react-3d-viewer/index.html",
     "static/css/2.818011ed.chunk.css.map": "/react-3d-viewer/static/css/2.818011ed.chunk.css.map",
     "static/css/main.841fac94.chunk.css.map": "/react-3d-viewer/static/css/main.841fac94.chunk.css.map",
-    "static/js/2.e6fd91a2.chunk.js.LICENSE.txt": "/react-3d-viewer/static/js/2.e6fd91a2.chunk.js.LICENSE.txt",
-    "static/media/armchairYellow.f1adda81.gltf": "/react-3d-viewer/static/media/armchairYellow.f1adda81.gltf"
+    "static/js/2.b8f0112d.chunk.js.LICENSE.txt": "/react-3d-viewer/static/js/2.b8f0112d.chunk.js.LICENSE.txt",
+    "static/media/carModel.gltf": "/react-3d-viewer/static/media/carModel.6db8319f.gltf"
   },
   "entrypoints": [
-    "static/js/runtime-main.83d4faed.js",
+    "static/js/runtime-main.080db1de.js",
     "static/css/2.818011ed.chunk.css",
-    "static/js/2.e6fd91a2.chunk.js",
+    "static/js/2.b8f0112d.chunk.js",
     "static/css/main.841fac94.chunk.css",
-    "static/js/main.c966cec9.chunk.js"
+    "static/js/main.dde6fdaa.chunk.js"
   ]
 }
