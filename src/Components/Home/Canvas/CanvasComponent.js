@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Canvas, useLoader } from 'react-three-fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import model from '../../../Models/testfile.glb';
 import { OrbitControls } from 'drei';
 import { Physics } from 'use-cannon';
 import { ControlData } from '../../../App';
@@ -15,10 +14,14 @@ const CanvasComponent = () => {
 		zoomLimit,
 		background,
 	} = useContext(ControlData);
-	function Model({ url }) {
-		const gltf = useLoader(GLTFLoader, model);
+	function Model(url) {
+		const gltf = useLoader(
+			GLTFLoader,
+			require('../../../Models/carModel.gltf').default
+		);
 		return <primitive object={gltf.scene} position={[0, -1, 0]} />;
 	}
+
 	return (
 		<Col md="7">
 			<Canvas
@@ -27,7 +30,7 @@ const CanvasComponent = () => {
 				width="650"
 				height="600"
 				className="canvas-style"
-				camera={{ position: [0, 0, 4], fov: zoomLimit }}
+				camera={{ position: [0, 0, 70], fov: zoomLimit }}
 			>
 				<ambientLight intensity={0.5} />
 				<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
