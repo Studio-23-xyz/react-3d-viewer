@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Canvas, useLoader } from 'react-three-fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import model from '../../../Models/testfile.glb';
-import { OrbitControls } from 'drei';
+//import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import model from '../../../Models/armchairYellow.gltf';
+import { OrbitControls, useGLTFLoader } from 'drei';
 import { Physics } from 'use-cannon';
 import { ControlData } from '../../../App';
 import { Col } from 'react-bootstrap';
@@ -16,7 +16,7 @@ const CanvasComponent = () => {
 		background,
 	} = useContext(ControlData);
 	function Model({ url }) {
-		const gltf = useLoader(GLTFLoader, model);
+		const gltf = useGLTFLoader (model, true);
 		return <primitive object={gltf.scene} position={[0, -1, 0]} />;
 	}
 	return (
