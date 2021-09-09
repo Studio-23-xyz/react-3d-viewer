@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Canvas, useLoader } from 'react-three-fiber';
 //import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import model from '../../../Models/armchairYellow.gltf';
-import { OrbitControls, useGLTFLoader } from 'drei';
+import Gmodel from '../../../Models/test.gltf';
+import Fmodel from '../../../Models/jeep.fbx';
+import { OrbitControls, useGLTFLoader, useFBXLoader } from 'drei';
 import { Physics } from 'use-cannon';
 import { ControlData } from '../../../App';
 import { Col } from 'react-bootstrap';
@@ -15,9 +16,17 @@ const CanvasComponent = () => {
 		zoomLimit,
 		background,
 	} = useContext(ControlData);
-	function Model({ url }) {
-		const gltf = useGLTFLoader (model, true);
+	
+	//Function for GLTF/GLB
+	function GModel({ url }) {
+		const gltf = useGLTFLoader (Gmodel, true);
 		return <primitive object={gltf.scene} position={[0, -1, 0]} />;
+	}
+	
+	//Function for FBX
+	function FModel({ url }) {
+		const fbx = useFBXLoader (Fmodel, true);
+		return <primitive object={fbx} position={[0, -1, 0]} />;
 	}
 	return (
 		<Col md="7">
@@ -27,7 +36,7 @@ const CanvasComponent = () => {
 				width="650"
 				height="600"
 				className="canvas-style"
-				camera={{ position: [0, 0, 4], fov: zoomLimit }}
+				camera={{ position: [0, 0, 800], fov: zoomLimit }}
 			>
 				<ambientLight intensity={0.5} />
 				<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
@@ -40,7 +49,7 @@ const CanvasComponent = () => {
 						autoRotateSpeed={rotationSpeed}
 					/>
 					<mesh>
-						<Model />
+						<FModel />
 					</mesh>
 				</Physics>
 			</Canvas>
