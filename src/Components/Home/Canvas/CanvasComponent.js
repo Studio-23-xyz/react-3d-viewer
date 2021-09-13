@@ -3,6 +3,8 @@ import { Canvas, useLoader } from 'react-three-fiber';
 //import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import Gmodel from '../../../Models/test.gltf';
 import Fmodel from '../../../Models/jeep.fbx';
+import Omodel from '../../../Models/car.obj';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { OrbitControls, useGLTFLoader, useFBXLoader } from 'drei';
 import { Physics } from 'use-cannon';
 import { ControlData } from '../../../App';
@@ -23,11 +25,18 @@ const CanvasComponent = () => {
 		return <primitive object={gltf.scene} position={[0, -1, 0]} />;
 	}
 	
-	//Function for FBX
+	//Function for FBX. 
 	function FModel({ url }) {
 		const fbx = useFBXLoader (Fmodel, true);
 		return <primitive object={fbx} position={[0, -1, 0]} />;
 	}
+
+	//Function for OBJ. 
+	function OModel() {
+		const obj = useLoader(OBJLoader, Omodel)
+		return <primitive object={obj} />
+	  }
+
 	return (
 		<Col md="7">
 			<Canvas
@@ -36,7 +45,7 @@ const CanvasComponent = () => {
 				width="650"
 				height="600"
 				className="canvas-style"
-				camera={{ position: [0, 0, 800], fov: zoomLimit }}
+				camera={{ position: [0, 0, 100], fov: zoomLimit }}
 			>
 				<ambientLight intensity={0.5} />
 				<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
@@ -49,7 +58,7 @@ const CanvasComponent = () => {
 						autoRotateSpeed={rotationSpeed}
 					/>
 					<mesh>
-						<FModel />
+						<OModel />
 					</mesh>
 				</Physics>
 			</Canvas>
