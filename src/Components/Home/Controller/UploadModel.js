@@ -1,19 +1,38 @@
-import axios from 'axios';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Accordion, Form } from 'react-bootstrap';
+import { ControlData } from '../../../App';
+import { Base64 } from 'js-base64';
+import { encode, decode } from 'js-base64';
 
 const UploadModel = () => {
+	const { model, setModel } = useContext(ControlData);
+
+	const toBase64 = (file) =>
+		new Promise((resolve, reject) => {
+			const reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = () => resolve(reader.result);
+			reader.onerror = (error) => reject(error);
+		});
 	const fileUpload = (e) => {
-		let data = new FormData();
-		data.append('file', e[0]);
-		axios
-			.post(
-				'https://run.mocky.io/v3/ff66833d-38a7-43fb-8153-1c68ac15bdfc',
-				data
-			)
-			.then((res) => {
-				console.log(res);
-			});
+		console.log(encode(e[0]));
+		const url = URL.createObjectURL(e[0]);
+		setModel(url);
+
+		// const formData = new FormData();
+
+		// formData.append('picture', e[0]);
+
+		// const res = await fetch('http://localhost:4000/picture', {
+		// 	method: 'POST',
+		// 	body: formData,
+		// }).then((res) => {
+		// 	console.log(res);
+		// 	setModel(e[0].name);
+		// 	return res.json();
+		// });
+
+		// alert(JSON.stringify(res));
 	};
 	return (
 		<Accordion.Item eventKey="4">

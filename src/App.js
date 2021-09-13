@@ -16,6 +16,7 @@ function App() {
 	const [zoomEnable, setZoomEnable] = useState(true);
 	const [zoomLimit, setZoomLimit] = useState(50);
 	const [background, setBackground] = useState('#0dcaf0');
+	const [model, setModel] = useState();
 
 	return (
 		<ControlData.Provider
@@ -32,6 +33,8 @@ function App() {
 				setZoomLimit,
 				background,
 				setBackground,
+				model,
+				setModel,
 			}}
 		>
 			<Home></Home>

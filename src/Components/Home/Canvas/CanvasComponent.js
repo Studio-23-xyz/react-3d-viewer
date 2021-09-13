@@ -13,12 +13,23 @@ const CanvasComponent = () => {
 		zoomEnable,
 		zoomLimit,
 		background,
+		model,
 	} = useContext(ControlData);
+	let finalModel = require('../../../Models/carModel.gltf').default;
+	const test = async () => {
+		finalModel = await 'done';
+
+		console.log(finalModel);
+	};
+	console.log(model);
+	if (model) {
+		console.log(model);
+		finalModel = model;
+	} else {
+		finalModel = require('../../../Models/carModel.gltf').default;
+	}
 	function Model(url) {
-		const gltf = useLoader(
-			GLTFLoader,
-			require('../../../Models/carModel.gltf').default
-		);
+		const gltf = useLoader(GLTFLoader, finalModel);
 		return <primitive object={gltf.scene} position={[0, -1, 0]} />;
 	}
 

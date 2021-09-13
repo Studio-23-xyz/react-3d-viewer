@@ -4,6 +4,7 @@ import Rotation from './Rotation';
 import Zoom from './Zoom';
 import Background from './Background';
 import UploadModel from './UploadModel';
+import TestUp from './TestUp';
 const ControllerComponent = () => {
 	return (
 		<Col md="5">
