@@ -16,12 +16,7 @@ const CanvasComponent = () => {
 		model,
 	} = useContext(ControlData);
 	let finalModel = require('../../../Models/carModel.gltf').default;
-	const test = async () => {
-		finalModel = await 'done';
 
-		console.log(finalModel);
-	};
-	console.log(model);
 	if (model) {
 		console.log(model);
 		finalModel = model;
