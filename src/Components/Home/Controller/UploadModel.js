@@ -15,7 +15,7 @@ const UploadModel = () => {
 		}
 	};
 	const urlLoad = (e) => {
-		console.log(e);
+		setModel(e);
 	};
 	return (
 		<Accordion.Item eventKey="4">
