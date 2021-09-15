@@ -9,13 +9,51 @@ const UploadModel = () => {
 	const [url, setUrl] = useState();
 
 	const fileUpload = (e) => {
-		if (e[0]) {
-			const url = URL.createObjectURL(e[0]);
-			setModel(url);
+		console.log(e);
+		if (e === undefined || e.length < 1) {
+			alert('no file selected');
+		} else {
+			var re = /(?:\.([^.]+))?$/;
+
+			var ext = re.exec(e[0].name)[1]; // "txt
+
+			if (ext !== 'gltf' && ext !== 'glb' && ext !== 'obj' && ext !== 'fbx') {
+				alert(
+					'please select a valid file, only supported glb/gltf, fbx and obj file'
+				);
+			} else if (
+				ext === 'gltf' ||
+				ext === 'glb' ||
+				ext === 'obj' ||
+				ext === 'fbx'
+			) {
+				console.log(e.length);
+				const url = URL.createObjectURL(e[0]);
+				setModel({ url: url, extension: ext });
+			}
 		}
 	};
 	const urlLoad = (e) => {
-		setModel(e);
+		if (e === '') {
+			alert('no url selected');
+		} else {
+			var re = /(?:\.([^.]+))?$/;
+
+			var ext = re.exec(e)[1]; // "txt
+			if (ext !== 'gltf' && ext !== 'glb' && ext !== 'obj' && ext !== 'fbx') {
+				alert(
+					'please select a valid url,only supported glb/gltf, fbx and obj url'
+				);
+			} else if (
+				ext === 'gltf' ||
+				ext === 'glb' ||
+				ext === 'obj' ||
+				ext === 'fbx'
+			) {
+				const url = e;
+				setModel({ url: url, extension: ext });
+			}
+		}
 	};
 	return (
 		<Accordion.Item eventKey="4">
