@@ -15,7 +15,10 @@ function App() {
 
 	const [zoomEnable, setZoomEnable] = useState(true);
 	const [zoomLimit, setZoomLimit] = useState(50);
-	const [background, setBackground] = useState('#0dcaf0');
+	const [background, setBackground] = useState({
+		value: '#0dcaf0',
+		type: 'plainBackground',
+	});
 	const [model, setModel] = useState();
 
 	return (

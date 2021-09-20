@@ -40,15 +40,21 @@ const CanvasComponent = () => {
 				return <primitive object={fbx} position={[0, -1, 0]} />;
 			};
 		}
-
-		console.log(model);
 	} else {
 		finalModel = require('../../../Models/carModel.gltf').default;
 	}
+	let backgroundStyle;
+	if (background.type === 'plainBackground') {
+		backgroundStyle = background.value;
+	} else {
+		let tbg = require(`../../../Background/${background.value}`).default;
+		backgroundStyle = `url(${tbg})`;
+	}
+
 	return (
 		<Col md="7">
 			<Canvas
-				style={{ background: background }}
+				style={{ background: backgroundStyle }}
 				id="renderCanvas"
 				width="650"
 				height="600"
