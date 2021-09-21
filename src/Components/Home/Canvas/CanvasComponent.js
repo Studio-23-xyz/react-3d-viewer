@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
-import { Canvas, useLoader } from 'react-three-fiber';
+import { Canvas, useLoader, useFrame } from 'react-three-fiber';
+//import * as THREE from 'three'
+
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
@@ -51,6 +53,14 @@ const CanvasComponent = () => {
 		backgroundStyle = `url(${tbg})`;
 	}
 
+	function Zoom() {
+		useFrame((state) => {
+		  state.camera.zoom = zoomLimit;
+		  state.camera.updateProjectionMatrix()
+		})
+		return null
+	  }
+
 	return (
 		<Col md="7">
 			<Canvas
@@ -59,12 +69,12 @@ const CanvasComponent = () => {
 				width="650"
 				height="600"
 				className="canvas-style"
-				orthographic
-				camera={{ position: [0, 0, 50], zoom: 8, far: 10000 }}
-			>
+				orthographic camera={{ position: [0, 0, 50], zoom: 2, far: 10000 }}
+			>   <Zoom />
 				<ambientLight intensity={0.5} />
 				<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
-				<Physics>
+				<Physics>	
+					
 					<OrbitControls
 						minPolarAngle={Math.PI / rotationLimit.max}
 						maxPolarAngle={Math.PI / rotationLimit.min}
@@ -72,10 +82,13 @@ const CanvasComponent = () => {
 						autoRotate={enableRotation}
 						autoRotateSpeed={rotationSpeed}
 					/>
-					<mesh>
+				
+					<mesh>	
+						
 						<Model />
 					</mesh>
 				</Physics>
+      		
 			</Canvas>
 		</Col>
 	);
