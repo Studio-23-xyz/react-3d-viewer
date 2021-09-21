@@ -32,9 +32,9 @@ const Zoom = () => {
 						className="form-range"
 						value={zoomLimit}
 						// onChange="zoomInLimit()"
-						min="1"
-						max="10"
-						step="1"
+						min="-100"
+						max="-10"
+						step="10"
 						id="zoom_limit"
 					/>
 				</div>
