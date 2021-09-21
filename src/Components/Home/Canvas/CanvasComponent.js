@@ -55,7 +55,7 @@ const CanvasComponent = () => {
 
 	function Zoom() {
 		useFrame((state) => {
-		  state.camera.zoom = zoomLimit;
+		  state.camera.fov= zoomLimit*-1;
 		  state.camera.updateProjectionMatrix()
 		})
 		return null
@@ -69,12 +69,11 @@ const CanvasComponent = () => {
 				width="650"
 				height="600"
 				className="canvas-style"
-				orthographic camera={{ position: [0, 0, 50], zoom: 2, far: 10000 }}
-			>   <Zoom />
+				camera={{ position: [0, 0, 60], fov: 60 }}
+			>   
 				<ambientLight intensity={0.5} />
 				<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
 				<Physics>	
-					
 					<OrbitControls
 						minPolarAngle={Math.PI / rotationLimit.max}
 						maxPolarAngle={Math.PI / rotationLimit.min}
@@ -84,11 +83,11 @@ const CanvasComponent = () => {
 					/>
 				
 					<mesh>	
-						
 						<Model />
 					</mesh>
 				</Physics>
-      		
+      			<Zoom />
+
 			</Canvas>
 		</Col>
 	);

@@ -14,7 +14,7 @@ function App() {
 	});
 
 	const [zoomEnable, setZoomEnable] = useState(true);
-	const [zoomLimit, setZoomLimit] = useState(5);
+	const [zoomLimit, setZoomLimit] = useState(-60);
 	const [background, setBackground] = useState({
 		value: '#0dcaf0',
 		type: 'plainBackground',
