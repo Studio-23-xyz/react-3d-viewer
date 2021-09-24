@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Canvas, useLoader, useFrame } from 'react-three-fiber';
-//import * as THREE from 'three'
+
 
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -21,29 +21,31 @@ const CanvasComponent = () => {
 		model,
 	} = useContext(ControlData);
 
-	let finalModel = require('../../../Models/carModel.gltf').default;
+	let finalModel = require('../../../Models/fire.fbx').default;
 
 	let Model = () => {
-		const gltf = useLoader(GLTFLoader, finalModel);
-
-		return <primitive object={gltf.scene} position={[0, -1, 0]} />;
+		
+		const fbx = useLoader(FBXLoader, finalModel);
+		return <primitive object={fbx} position={[0, -1, 0]} />;
+		
 	};
 	if (model) {
 		finalModel = model.url;
-		if (model.extension === 'gltf') {
+		if (model.extension === 'fbx') {
 		} else if (model.extension === 'obj') {
 			Model = () => {
 				const obj = useLoader(OBJLoader, finalModel);
 				return <primitive object={obj} position={[0, -1, 0]} />;
 			};
-		} else if (model.extension === 'fbx') {
+		} else if (model.extension === 'gltf') {
 			Model = () => {
-				const fbx = useLoader(FBXLoader, finalModel);
-				return <primitive object={fbx} position={[0, -1, 0]} />;
+				const gltf = useLoader(GLTFLoader, finalModel);
+
+				return <primitive object={gltf.scene} position={[0, -1, 0]} />;
 			};
 		}
 	} else {
-		finalModel = require('../../../Models/carModel.gltf').default;
+		finalModel = require('../../../Models/fire.fbx').default;
 	}
 	let backgroundStyle;
 	if (background.type === 'plainBackground') {
@@ -69,7 +71,7 @@ const CanvasComponent = () => {
 				width="650"
 				height="600"
 				className="canvas-style"
-				camera={{ position: [0, 0, 60], fov: 60 }}
+				camera={{ position: [0, 0, 300], fov: 75 }}
 			>   
 				<ambientLight intensity={0.5} />
 				<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
