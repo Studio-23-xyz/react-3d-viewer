@@ -3,13 +3,16 @@ import { Accordion, ButtonGroup, Form, Button } from 'react-bootstrap';
 import { ControlData } from '../../../App';
 
 const UploadModel = () => {
-	const { setModel } = useContext(ControlData);
+	const { setModel, loading, setLoading } = useContext(ControlData);
 	const [uploadType, setUploadType] = useState('file');
 	const [file, setFile] = useState();
 	const [url, setUrl] = useState();
 
 	const fileUpload = (e) => {
-		console.log(e);
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
 		if (e === undefined || e.length < 1) {
 			alert('no file selected');
 		} else {
@@ -34,6 +37,10 @@ const UploadModel = () => {
 		}
 	};
 	const urlLoad = (e) => {
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
 		if (e === '') {
 			alert('no url selected');
 		} else {
