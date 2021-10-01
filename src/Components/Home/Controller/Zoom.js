@@ -4,7 +4,7 @@ import { ControlData } from '../../../App';
 import { Accordion, Col, Row } from 'react-bootstrap';
 
 const Zoom = () => {
-	const { zoomEnable, setZoomEnable, zoomLimit, setZoomLimit } =
+	const { zoomEnable, setZoomEnable, zoomInLimit, zoomOutLimit, setZoomInLimit, setZoomOutLimit } =
 		useContext(ControlData);
 	return (
 		<Accordion.Item eventKey="1">
@@ -24,18 +24,32 @@ const Zoom = () => {
 						</div>
 					</Col>
 				</Row>
-				<div className="zoom_limit">
-					<p className="mb-1">Zoom limit</p>
+				<div className="zoom_in_limit">
+					<p className="mb-1">Zoom In limit</p>
 					<input
-						onChange={(e) => setZoomLimit(parseInt(e.target.value))}
+						onChange={(e) => setZoomInLimit(parseInt(e.target.value))}
 						type="range"
 						className="form-range"
-						value={zoomLimit}
+						value={zoomInLimit}
 						// onChange="zoomInLimit()"
-						min="-100"
-						max="-10"
-						step="10"
-						id="zoom_limit"
+						min="10"
+						max="30"
+						step="2"
+						id="zoom_in_limit"
+					/>
+				</div>
+				<div className="zoom_out_limit">
+					<p className="mb-1">Zoom Out limit</p>
+					<input
+						onChange={(e) => setZoomOutLimit(parseInt(e.target.value))}
+						type="range"
+						className="form-range"
+						value={zoomOutLimit}
+						// onChange="zoomOutLimit()"
+						min="4"
+						max="14"
+						step="1"
+						id="zoom_out_limit"
 					/>
 				</div>
 			</Accordion.Body>

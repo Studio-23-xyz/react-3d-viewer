@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
+//import { Loader } from 'drei';
 import { Accordion, Col, Row } from 'react-bootstrap';
 import { ControlData } from '../../../App';
 const Rotation = () => {
@@ -32,6 +33,7 @@ const Rotation = () => {
 								type="checkbox"
 								id="autoRotationControl"
 								checked={enableRotation}
+								
 							/>
 						</div>
 					</Col>
@@ -47,10 +49,10 @@ const Rotation = () => {
 						max="50"
 						step="5"
 						id="rotation_speed"
-					/>
+					/>						
 				</div>
 				<div className="rotation_limit">
-					<p className="mb-1">Rotation View Angle</p>
+					<p className="mb-1">Rotation View Angle</p>				
 					<input
 						type="range"
 						className="form-range"
@@ -60,10 +62,10 @@ const Rotation = () => {
 						max="32"
 						step="2"
 						id="rotation_limit"
-					/>
-				</div>
+					/>		
+				</div>				
 			</Accordion.Body>
-		</Accordion.Item>
+		</Accordion.Item>		
 	);
 };
 
