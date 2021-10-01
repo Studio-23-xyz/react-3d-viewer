@@ -3,13 +3,16 @@ import { Accordion, ButtonGroup, Form, Button } from 'react-bootstrap';
 import { ControlData } from '../../../App';
 
 const UploadModel = () => {
-	const { setModel } = useContext(ControlData);
+	const { setModel, loading, setLoading } = useContext(ControlData);
 	const [uploadType, setUploadType] = useState('file');
 	const [file, setFile] = useState();
 	const [url, setUrl] = useState();
 
 	const fileUpload = (e) => {
-		console.log(e);
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
 		if (e === undefined || e.length < 1) {
 			alert('no file selected');
 		} else {
@@ -34,6 +37,10 @@ const UploadModel = () => {
 		}
 	};
 	const urlLoad = (e) => {
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
 		if (e === '') {
 			alert('no url selected');
 		} else {
@@ -70,7 +77,7 @@ const UploadModel = () => {
 				<div className="upload_model">
 					{uploadType === 'file' ? (
 						<Form.Group controlId="formFile" className="mb-3">
-							<Form.Label>Upload a gltf file</Form.Label>
+							<Form.Label>Upload a gltf/obj/fbx file</Form.Label>
 							<Form.Control
 								type="file"
 								onChange={(e) => setFile(e.target.files)}
@@ -85,7 +92,7 @@ const UploadModel = () => {
 						</Form.Group>
 					) : (
 						<Form.Group controlId="formFile" className="mb-3">
-							<Form.Label>Gltf model url</Form.Label>
+							<Form.Label>gltf/fbx/obj model url</Form.Label>
 							<Form.Control
 								type="text"
 								onChange={(e) => setUrl(e.target.value)}
@@ -93,7 +100,7 @@ const UploadModel = () => {
 							<Button
 								className="w-100 mt-3"
 								variant="success"
-								onClick={() => urlLoad(url)}
+								onC0lick={() => urlLoad(url)}
 							>
 								Url Upload
 							</Button>

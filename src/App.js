@@ -20,6 +20,7 @@ function App() {
 		value: '#0dcaf0',
 		type: 'plainBackground',
 	});
+	const [loading, setLoading] = useState(true);
 	const [model, setModel] = useState();
 
 	return (
@@ -41,6 +42,8 @@ function App() {
 				setBackground,
 				model,
 				setModel,
+				loading,
+				setLoading,
 			}}
 		>
 			<Home></Home>

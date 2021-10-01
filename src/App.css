@@ -30,3 +30,7 @@
 	display: inline-block;
 	margin: 2px;
 }
+div#loading_indicator {
+	width: 650px;
+	height: 500px;
+}
