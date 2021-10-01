@@ -7,7 +7,7 @@ const Home = () => {
 	return (
 		<Container>
 			<h1 align="center" className="mb-3">
-				3d Viewer
+				3D Viewer
 			</h1>
 			<Row>
 				<CanvasComponent />
