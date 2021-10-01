@@ -77,7 +77,7 @@ const UploadModel = () => {
 				<div className="upload_model">
 					{uploadType === 'file' ? (
 						<Form.Group controlId="formFile" className="mb-3">
-							<Form.Label>Upload a gltf file</Form.Label>
+							<Form.Label>Upload a gltf/obj/fbx file</Form.Label>
 							<Form.Control
 								type="file"
 								onChange={(e) => setFile(e.target.files)}
@@ -92,7 +92,7 @@ const UploadModel = () => {
 						</Form.Group>
 					) : (
 						<Form.Group controlId="formFile" className="mb-3">
-							<Form.Label>Gltf model url</Form.Label>
+							<Form.Label>gltf/fbx/obj model url</Form.Label>
 							<Form.Control
 								type="text"
 								onChange={(e) => setUrl(e.target.value)}
@@ -100,7 +100,7 @@ const UploadModel = () => {
 							<Button
 								className="w-100 mt-3"
 								variant="success"
-								onClick={() => urlLoad(url)}
+								onC0lick={() => urlLoad(url)}
 							>
 								Url Upload
 							</Button>
