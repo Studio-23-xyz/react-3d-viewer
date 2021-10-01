@@ -14,12 +14,14 @@ const CanvasComponent = () => {
 		rotationSpeed,
 		rotationLimit,
 		zoomEnable,
-		zoomLimit,
+		zoomInLimit,
+		zoomOutLimit,
 		background,
 		model,
 		loading,
 		setLoading,
 	} = useContext(ControlData);
+	
 	setTimeout(() => {
 		setLoading(false);
 	}, 3000);
@@ -55,14 +57,15 @@ const CanvasComponent = () => {
 		let tbg = require(`../../../Background/${background.value}`).default;
 		backgroundStyle = `url(${tbg})`;
 	}
-
+/*
 	function Zoom() {
 		useFrame((state) => {
-			state.camera.fov = zoomLimit * -1;
-			state.camera.updateProjectionMatrix();
-		});
-		return null;
-	}
+		  state.camera.fov= zoomLimit*-1;
+		  state.camera.updateProjectionMatrix()
+		})
+		return null
+	  }*/
+
 
 	return (
 		<Col md="7">
@@ -80,7 +83,7 @@ const CanvasComponent = () => {
 					width="650"
 					height="600"
 					className="canvas-style"
-					camera={{ position: [0, 0, 300], fov: 75 }}
+					orthographic camera={{ position: [0, 0, 50], zoom: 1, far: 100 }}
 				>
 					<ambientLight intensity={0.5} />
 					<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
@@ -89,6 +92,8 @@ const CanvasComponent = () => {
 							minPolarAngle={Math.PI / rotationLimit.max}
 							maxPolarAngle={Math.PI / rotationLimit.min}
 							enableZoom={zoomEnable}
+							maxZoom={zoomInLimit/10}
+							minZoom={zoomOutLimit/10}
 							autoRotate={enableRotation}
 							autoRotateSpeed={rotationSpeed}
 						/>
@@ -97,7 +102,7 @@ const CanvasComponent = () => {
 							<Model />
 						</mesh>
 					</Physics>
-					<Zoom />
+				
 				</Canvas>
 			)}
 		</Col>
