@@ -4,8 +4,14 @@ import { ControlData } from '../../../App';
 import { Accordion, Col, Row } from 'react-bootstrap';
 
 const Zoom = () => {
-	const { zoomEnable, setZoomEnable, zoomInLimit, zoomOutLimit, setZoomInLimit, setZoomOutLimit } =
-		useContext(ControlData);
+	const { 
+		zoomEnable, 
+		setZoomEnable, 
+		zoomInLimit,
+		zoomOutLimit, 
+		setZoomInLimit, 
+		setZoomOutLimit 
+	} =	useContext(ControlData);
 	return (
 		<Accordion.Item eventKey="1">
 			<Accordion.Header className="according-btn">Zoom</Accordion.Header>
@@ -33,8 +39,8 @@ const Zoom = () => {
 						value={zoomInLimit}
 						// onChange="zoomInLimit()"
 						min="10"
-						max="30"
-						step="2"
+						max="50"
+						step="4"
 						id="zoom_in_limit"
 					/>
 				</div>

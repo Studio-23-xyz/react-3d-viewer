@@ -12,7 +12,8 @@ const CanvasComponent = () => {
 	const {
 		enableRotation,
 		rotationSpeed,
-		rotationLimit,
+		rotationTopLimit,
+		rotationBottomLimit,
 		zoomEnable,
 		zoomInLimit,
 		zoomOutLimit,
@@ -25,6 +26,16 @@ const CanvasComponent = () => {
 	setTimeout(() => {
 		setLoading(false);
 	}, 3000);
+	
+	/*
+	function radians_to_degrees(radians)
+	{
+	  var pi = Math.PI;
+	  return radians * (180/pi);
+	}
+	 
+	var angle= radians_to_degrees(Math.PI);
+	*/
 
 	let finalModel = require('../../../Models/fire.fbx').default;
 
@@ -89,8 +100,8 @@ const CanvasComponent = () => {
 					<spotLight intensity={0.5} position={[25, 25, 25]} angle={0.1} />
 					<Physics>
 						<OrbitControls
-							minPolarAngle={Math.PI / rotationLimit.max}
-							maxPolarAngle={Math.PI / rotationLimit.min}
+							maxPolarAngle={Math.PI/ rotationTopLimit}
+							minPolarAngle={Math.PI/ rotationBottomLimit}
 							enableZoom={zoomEnable}
 							maxZoom={zoomInLimit/10}
 							minZoom={zoomOutLimit/10}
