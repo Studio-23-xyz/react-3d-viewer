@@ -9,16 +9,15 @@ const Rotation = () => {
 		setEnableRotation,
 		rotationSpeed,
 		setRotationSpeed,
-		rotationLimit,
-		setRotationLimit,
+		rotationTopLimit,
+		setRotationTopLimit,
+		rotationBottomLimit,
+		setRotationBottomLimit,
 	} = useContext(ControlData);
-	const rotationLimitControl = (e) => {
-		setRotationLimit({
-			max: 32 - e,
-			min: e,
-		});
-		console.log(rotationLimit);
-	};
+	
+		console.log(rotationTopLimit);
+		console.log(rotationBottomLimit);
+	
 	return (
 		<Accordion.Item eventKey="0">
 			<Accordion.Header className="according-btn">Rotation</Accordion.Header>
@@ -52,16 +51,30 @@ const Rotation = () => {
 					/>						
 				</div>
 				<div className="rotation_limit">
-					<p className="mb-1">Rotation View Angle</p>				
+					<p className="mb-1">Rotation Top Limit</p>				
 					<input
 						type="range"
 						className="form-range"
-						value={rotationLimit.min}
-						onChange={(e) => rotationLimitControl(parseInt(e.target.value))}
-						min="2"
+						value={rotationTopLimit}
+						onChange={(e) => setRotationTopLimit(parseInt(e.target.value))}
+						min="1"
 						max="32"
-						step="2"
-						id="rotation_limit"
+						step="1"
+						id="rotation_top_limit"
+					/>		
+				</div>	
+				
+				<div className="rotation_limit">
+					<p className="mb-1">Rotation Bottom Limit</p>				
+					<input
+						type="range"
+						className="form-range"
+						value={rotationBottomLimit}
+						onChange={(e) => setRotationBottomLimit(parseInt(e.target.value))}
+						min="1"
+						max="32"
+						step="0.5"
+						id="rotation_bottom_limit"
 					/>		
 				</div>				
 			</Accordion.Body>
