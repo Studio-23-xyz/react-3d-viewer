@@ -4,8 +4,9 @@ import CanvasComponent from './Canvas/CanvasComponent';
 import ControllerComponent from './Controller/ControllerComponent';
 
 const Home = () => {
+	
 	return (
-		<Container>
+		<div className="homeComponent" id="homeComponent">
 			<h1 align="center" className="mb-3">
 				3D Viewer
 			</h1>
@@ -13,7 +14,7 @@ const Home = () => {
 				<CanvasComponent />
 				<ControllerComponent />
 			</Row>
-		</Container>
+		</div>
 	);
 };
 
