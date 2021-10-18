@@ -6,7 +6,7 @@ import Background from './Background/Background';
 import UploadModel from './UploadModel';
 const ControllerComponent = () => {
 	return (
-		<Col md="5">
+		<Col md="5" id="conficComponent">
 			<div className="config-section-header">
 				<h6>Configuration</h6>
 			</div>

@@ -30,7 +30,7 @@ function App() {
 				setRotationSpeed,
 				rotationTopLimit,
 				setRotationTopLimit,
-				rotationBottomLimit, 
+				rotationBottomLimit,
 				setRotationBottomLimit,
 				zoomEnable,
 				setZoomEnable,
@@ -46,7 +46,7 @@ function App() {
 				setLoading,
 			}}
 		>
-			<Home></Home>
+			<Home />
 		</ControlData.Provider>
 	);
 }

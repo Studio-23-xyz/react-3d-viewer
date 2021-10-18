@@ -12,12 +12,7 @@
 	color: #009fdb !important;
 	font-weight: bold;
 }
-.canvas-style {
-	width: 641px;
-	height: 511.667px !important;
-	background-size: cover !important;
-	background-repeat: no-repeat !important;
-}
+
 .bc1,
 .bc2,
 .bc3,
@@ -33,4 +28,15 @@
 div#loading_indicator {
 	width: 650px;
 	height: 500px;
+}
+.homeComponent {
+	width: 1120px;
+	margin: 0 auto !important;
+}
+.homeComponentFullScreen {
+	width: 100%;
+	margin: 0 auto !important;
+}
+.display-nome {
+	display: none;
 }
