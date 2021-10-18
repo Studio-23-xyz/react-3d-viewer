@@ -4,7 +4,6 @@ import CanvasComponent from './Canvas/CanvasComponent';
 import ControllerComponent from './Controller/ControllerComponent';
 
 const Home = () => {
-	
 	return (
 		<div className="homeComponent" id="homeComponent">
 			<h1 align="center" className="mb-3">
