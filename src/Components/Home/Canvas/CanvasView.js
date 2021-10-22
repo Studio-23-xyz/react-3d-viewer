@@ -52,6 +52,7 @@ const CanvasView = () => {
 	}
 	return (
 		<Canvas
+			gl={{ preserveDrawingBuffer: true }}
 			style={{ background: backgroundStyle }}
 			id="renderCanvas"
 			width="650"
