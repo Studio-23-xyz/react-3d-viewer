@@ -5,7 +5,7 @@ import { Col, Spinner, Button, Modal } from 'react-bootstrap';
 import { RiScreenshot2Fill } from 'react-icons/ri';
 import { BiFullscreen } from 'react-icons/bi';
 import CanvasView from './CanvasView';
-
+import html2canvas from 'html2canvas';
 const CanvasComponent = () => {
 	const { loading, setLoading } = useContext(ControlData);
 
@@ -49,8 +49,18 @@ const CanvasComponent = () => {
 			fullScreen = false;
 		}
 	};
-	const screenShopControl = () => {
-		console.log('its for screenshot');
+	const screenShotControl = () => {
+		html2canvas(document.getElementById('renderCanvas')).then(function (
+			canvas
+		) {
+			var data = canvas.toDataURL('image/jpeg', 0.9);
+			var src = encodeURI(data);
+
+			const a = document.createElement('a');
+			a.href = src;
+			a.download = 'canvas.png';
+			a.click();
+		});
 	};
 	return (
 		<Col md="7" className="canvasComponent" id="canvasComponent">
@@ -67,7 +77,7 @@ const CanvasComponent = () => {
 						<Button variant="light" onClick={() => fullScreenControl()}>
 							<BiFullscreen />
 						</Button>
-						<Button variant="light" onClick={() => screenShopControl()}>
+						<Button variant="light" onClick={() => screenShotControl()}>
 							<RiScreenshot2Fill />
 						</Button>
 					</div>
