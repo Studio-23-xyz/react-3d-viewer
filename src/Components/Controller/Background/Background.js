@@ -3,7 +3,7 @@ import { Accordion, ButtonGroup, Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import PlainBackground from './PlainBackground';
 import TextureBackground from './TextureBackground';
-import { ControlData } from '../../VisualaizerRaj';
+import { ControlData } from '../../Visualaizer';
 const Background = () => {
 	const { visualaizer, setVisualaizer } = useContext(ControlData);
 	const [backgroundType, setBackgroundType] = useState('plainBackground');

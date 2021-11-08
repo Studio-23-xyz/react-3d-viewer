@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import CanvasComponent from './Canvas/CanvasComponent';
 import ControllerComponent from './Controller/ControllerComponent';
-import './VisualaizerRaj.css';
+import './Visualaizer.css';
 
 import { createContext } from 'react';
 export const ControlData = createContext();
 
-const VisualaizerRaj = ({ visualaizer, setVisualaizer }) => {
+const  Visualaizer= ({ visualaizer, setVisualaizer }) => {
 	// const [visualaizer, setVisualaizer] = useState({
 	// 	enableRotation: true,
 	// 	rotationSpeed: 10,
@@ -47,4 +47,4 @@ const VisualaizerRaj = ({ visualaizer, setVisualaizer }) => {
 	);
 };
 
-export default VisualaizerRaj;
+export default Visualaizer;

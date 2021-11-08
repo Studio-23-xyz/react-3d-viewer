@@ -5,7 +5,7 @@ import { RiScreenshot2Fill } from 'react-icons/ri';
 import { BiFullscreen } from 'react-icons/bi';
 
 import html2canvas from 'html2canvas';
-import { ControlData } from '../VisualaizerRaj';
+import { ControlData } from '../Visualaizer';
 const CanvasView = React.lazy(() => import('./CanvasView.js'));
 const CanvasComponent = () => {
 	const { setLoading } = useContext(ControlData);

@@ -6,7 +6,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { OrbitControls } from 'drei';
 import { Physics } from 'use-cannon';
-import { ControlData } from '../VisualaizerRaj';
+import { ControlData } from '../Visualaizer';
 
 const CanvasView = () => {
 	const { visualaizer } = useContext(ControlData);

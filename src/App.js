@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import VisualaizerRaj from './Components/VisualaizerRaj';
+import Visualaizer from './Components/Visualaizer';
 function App() {
 	const [visualaizer, setVisualaizer] = useState({
 		enableRotation: true,
@@ -19,7 +19,7 @@ function App() {
 	});
 	return (
 		<>
-			<VisualaizerRaj
+			<Visualaizer
 				visualaizer={visualaizer}
 				setVisualaizer={setVisualaizer}
 			/>

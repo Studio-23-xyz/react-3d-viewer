@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 //import { Loader } from 'drei';
 import { Accordion, Col, Row } from 'react-bootstrap';
-import { ControlData } from '../VisualaizerRaj';
+import { ControlData } from '../Visualaizer';
 const Rotation = () => {
 	const { visualaizer, setVisualaizer } = useContext(ControlData);
 	const {

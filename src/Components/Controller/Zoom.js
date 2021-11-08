@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { Accordion, Col, Row } from 'react-bootstrap';
-import { ControlData } from '../VisualaizerRaj';
+import { ControlData } from '../Visualaizer';
 
 const Zoom = () => {
 	const { visualaizer, setVisualaizer } = useContext(ControlData);
