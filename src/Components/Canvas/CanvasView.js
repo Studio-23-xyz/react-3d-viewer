@@ -56,7 +56,7 @@ const CanvasView = () => {
 	if (background.type === 'plainBackground') {
 		backgroundStyle = background.value;
 	} else {
-		let tbg = require(`../../../Background/${background.value}`).default;
+		let tbg = require(`../../Background/${background.value}`).default;
 		backgroundStyle = `url(${tbg})`;
 	}
 	return (

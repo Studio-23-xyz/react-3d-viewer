@@ -11,8 +11,6 @@ const Rotation = () => {
 		rotationTopLimit,
 		rotationBottomLimit,
 	} = visualaizer;
-	console.log(visualaizer);
-
 	return (
 		<Accordion.Item eventKey="0">
 			<Accordion.Header className="according-btn">Rotation</Accordion.Header>
