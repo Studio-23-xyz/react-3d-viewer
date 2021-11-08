@@ -21,7 +21,7 @@ const CanvasView = () => {
 		zoomOutLimit,
 		background,
 	} = visualaizer;
-	let finalModel = require('../../../Models/fire.fbx').default;
+	let finalModel = require('../../Models/fire.fbx').default;
 
 	let Model = () => {
 		const fbx = useLoader(FBXLoader, finalModel);
@@ -50,7 +50,7 @@ const CanvasView = () => {
 			};
 		}
 	} else {
-		finalModel = require('../../../Models/fire.fbx').default;
+		finalModel = require('../../Models/fire.fbx').default;
 	}
 	let backgroundStyle;
 	if (background.type === 'plainBackground') {
