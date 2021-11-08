@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Accordion, ButtonGroup, Form, Button } from 'react-bootstrap';
-import { ControlData } from '../VisualaizerRaj';
+import { ControlData } from '../Visualaizer';
 
 const UploadModel = () => {
 	const { visualaizer, setVisualaizer, setLoading } = useContext(ControlData);

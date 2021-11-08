@@ -6,7 +6,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { OrbitControls } from 'drei';
 import { Physics } from 'use-cannon';
-import { ControlData } from '../VisualaizerRaj';
+import { ControlData } from '../Visualaizer';
 
 const CanvasView = () => {
 	const { visualaizer } = useContext(ControlData);
@@ -21,7 +21,7 @@ const CanvasView = () => {
 		zoomOutLimit,
 		background,
 	} = visualaizer;
-	let finalModel = require('../../../Models/fire.fbx').default;
+	let finalModel = require('../../Models/fire.fbx').default;
 
 	let Model = () => {
 		const fbx = useLoader(FBXLoader, finalModel);
@@ -50,13 +50,13 @@ const CanvasView = () => {
 			};
 		}
 	} else {
-		finalModel = require('../../../Models/fire.fbx').default;
+		finalModel = require('../../Models/fire.fbx').default;
 	}
 	let backgroundStyle;
 	if (background.type === 'plainBackground') {
 		backgroundStyle = background.value;
 	} else {
-		let tbg = require(`../../../Background/${background.value}`).default;
+		let tbg = require(`../../Background/${background.value}`).default;
 		backgroundStyle = `url(${tbg})`;
 	}
 	return (

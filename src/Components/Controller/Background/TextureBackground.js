@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TextureBackground = ({ background, controlBackground }) => {
-	let tbg = require(`../../../../Background/${background}`).default;
+	let tbg = require(`../../../Background/${background}`).default;
 	let backgroundStyle = `url(${tbg})`;
 	return (
 		<div
