@@ -2,22 +2,17 @@ import React from 'react';
 import { useContext } from 'react';
 //import { Loader } from 'drei';
 import { Accordion, Col, Row } from 'react-bootstrap';
-import { ControlData } from '../../../App';
+import { ControlData } from '../VisualaizerRaj';
 const Rotation = () => {
+	const { visualaizer, setVisualaizer } = useContext(ControlData);
 	const {
 		enableRotation,
-		setEnableRotation,
 		rotationSpeed,
-		setRotationSpeed,
 		rotationTopLimit,
-		setRotationTopLimit,
 		rotationBottomLimit,
-		setRotationBottomLimit,
-	} = useContext(ControlData);
-	
-		console.log(rotationTopLimit);
-		console.log(rotationBottomLimit);
-	
+	} = visualaizer;
+	console.log(visualaizer);
+
 	return (
 		<Accordion.Item eventKey="0">
 			<Accordion.Header className="according-btn">Rotation</Accordion.Header>
@@ -27,12 +22,16 @@ const Rotation = () => {
 					<Col md="4" className="d-flex justify-content-end">
 						<div className="form-check form-switch">
 							<input
-								onChange={() => setEnableRotation(!enableRotation)}
+								onChange={() =>
+									setVisualaizer({
+										...visualaizer,
+										enableRotation: !enableRotation,
+									})
+								}
 								className="form-check-input"
 								type="checkbox"
 								id="autoRotationControl"
 								checked={enableRotation}
-								
 							/>
 						</div>
 					</Col>
@@ -43,42 +42,57 @@ const Rotation = () => {
 						type="range"
 						className="form-range"
 						value={rotationSpeed}
-						onChange={(e) => setRotationSpeed(parseInt(e.target.value))}
+						onChange={e =>
+							setVisualaizer({
+								...visualaizer,
+								rotationSpeed: parseInt(e.target.value),
+							})
+						}
 						min="-50"
 						max="50"
 						step="5"
 						id="rotation_speed"
-					/>						
+					/>
 				</div>
 				<div className="rotation_limit">
-					<p className="mb-1">Rotation Top Limit</p>				
+					<p className="mb-1">Rotation Top Limit</p>
 					<input
 						type="range"
 						className="form-range"
 						value={rotationTopLimit}
-						onChange={(e) => setRotationTopLimit(parseInt(e.target.value))}
+						onChange={e =>
+							setVisualaizer({
+								...visualaizer,
+								rotationTopLimit: parseInt(e.target.value),
+							})
+						}
 						min="1"
 						max="32"
 						step="1"
 						id="rotation_top_limit"
-					/>		
-				</div>	
-				
+					/>
+				</div>
+
 				<div className="rotation_limit">
-					<p className="mb-1">Rotation Bottom Limit</p>				
+					<p className="mb-1">Rotation Bottom Limit</p>
 					<input
 						type="range"
 						className="form-range"
 						value={rotationBottomLimit}
-						onChange={(e) => setRotationBottomLimit(parseInt(e.target.value))}
+						onChange={e =>
+							setVisualaizer({
+								...visualaizer,
+								rotationBottomLimit: parseInt(e.target.value),
+							})
+						}
 						min="1"
 						max="32"
 						step="0.5"
 						id="rotation_bottom_limit"
-					/>		
-				</div>				
+					/>
+				</div>
 			</Accordion.Body>
-		</Accordion.Item>		
+		</Accordion.Item>
 	);
 };
 

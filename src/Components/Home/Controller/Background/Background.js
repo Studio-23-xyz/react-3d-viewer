@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { Accordion, ButtonGroup, Button } from 'react-bootstrap';
 import { useContext } from 'react';
-import { ControlData } from '../../../../App';
 import PlainBackground from './PlainBackground';
 import TextureBackground from './TextureBackground';
+import { ControlData } from '../../VisualaizerRaj';
 const Background = () => {
-	const { setBackground } = useContext(ControlData);
+	const { visualaizer, setVisualaizer } = useContext(ControlData);
 	const [backgroundType, setBackgroundType] = useState('plainBackground');
-	const controlBackground = (value) => {
-		setBackground({
-			value: value,
-			type: backgroundType,
+	const controlBackground = value => {
+		setVisualaizer({
+			...visualaizer,
+			background: {
+				value: value,
+				type: backgroundType,
+			},
 		});
 	};
 	let plainBackground = [
@@ -42,8 +45,9 @@ const Background = () => {
 					{backgroundType === 'plainBackground' ? (
 						<div className="plain_background_colors">
 							<p className="mb-1">Choose Plain Background Color</p>
-							{plainBackground.map((v) => (
+							{plainBackground.map((v, index) => (
 								<PlainBackground
+									key={index}
 									background={v}
 									controlBackground={controlBackground}
 								/>
@@ -52,8 +56,9 @@ const Background = () => {
 					) : (
 						<div className="texture_background_colors">
 							<p className="mb-1">Choose Texture Background</p>
-							{textureBackground.map((v) => (
+							{textureBackground.map((v, index) => (
 								<TextureBackground
+									key={index}
 									background={v}
 									controlBackground={controlBackground}
 								/>

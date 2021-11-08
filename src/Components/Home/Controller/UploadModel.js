@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { Accordion, ButtonGroup, Form, Button } from 'react-bootstrap';
-import { ControlData } from '../../../App';
+import { ControlData } from '../VisualaizerRaj';
 
 const UploadModel = () => {
-	const { setModel, loading, setLoading } = useContext(ControlData);
+	const { visualaizer, setVisualaizer, setLoading } = useContext(ControlData);
+
 	const [uploadType, setUploadType] = useState('file');
 	const [file, setFile] = useState();
 	const [url, setUrl] = useState();
 
-	const fileUpload = (e) => {
+	const fileUpload = e => {
 		setLoading(true);
 		setTimeout(() => {
 			setLoading(false);
@@ -32,11 +33,11 @@ const UploadModel = () => {
 			) {
 				console.log(e.length);
 				const url = URL.createObjectURL(e[0]);
-				setModel({ url: url, extension: ext });
+				setVisualaizer({ ...visualaizer, model: { url: url, extension: ext } });
 			}
 		}
 	};
-	const urlLoad = (e) => {
+	const urlLoad = e => {
 		setLoading(true);
 		setTimeout(() => {
 			setLoading(false);
@@ -58,7 +59,7 @@ const UploadModel = () => {
 				ext === 'fbx'
 			) {
 				const url = e;
-				setModel({ url: url, extension: ext });
+				setVisualaizer({ ...visualaizer, model: { url: url, extension: ext } });
 			}
 		}
 	};
@@ -80,7 +81,7 @@ const UploadModel = () => {
 							<Form.Label>Upload a gltf/obj/fbx file</Form.Label>
 							<Form.Control
 								type="file"
-								onChange={(e) => setFile(e.target.files)}
+								onChange={e => setFile(e.target.files)}
 							/>
 							<Button
 								className="w-100 mt-3"
@@ -95,7 +96,7 @@ const UploadModel = () => {
 							<Form.Label>gltf/fbx/obj model url</Form.Label>
 							<Form.Control
 								type="text"
-								onChange={(e) => setUrl(e.target.value)}
+								onChange={e => setUrl(e.target.value)}
 							/>
 							<Button
 								className="w-100 mt-3"
