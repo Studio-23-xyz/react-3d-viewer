@@ -1,17 +1,11 @@
 import React from 'react';
 import { useContext } from 'react';
-import { ControlData } from '../../../App';
 import { Accordion, Col, Row } from 'react-bootstrap';
+import { ControlData } from '../VisualaizerRaj';
 
 const Zoom = () => {
-	const { 
-		zoomEnable, 
-		setZoomEnable, 
-		zoomInLimit,
-		zoomOutLimit, 
-		setZoomInLimit, 
-		setZoomOutLimit 
-	} =	useContext(ControlData);
+	const { visualaizer, setVisualaizer } = useContext(ControlData);
+	const { zoomEnable, zoomInLimit, zoomOutLimit } = visualaizer;
 	return (
 		<Accordion.Item eventKey="1">
 			<Accordion.Header className="according-btn">Zoom</Accordion.Header>
@@ -21,7 +15,9 @@ const Zoom = () => {
 					<Col md="4" className="d-flex justify-content-end">
 						<div className="form-check form-switch">
 							<input
-								onChange={() => setZoomEnable(!zoomEnable)}
+								onChange={() =>
+									setVisualaizer({ ...visualaizer, zoomEnable: !zoomEnable })
+								}
 								className="form-check-input"
 								type="checkbox"
 								id="ZoomControl"
@@ -33,7 +29,12 @@ const Zoom = () => {
 				<div className="zoom_in_limit">
 					<p className="mb-1">Zoom In limit</p>
 					<input
-						onChange={(e) => setZoomInLimit(parseInt(e.target.value))}
+						onChange={e =>
+							setVisualaizer({
+								...visualaizer,
+								zoomInLimit: parseInt(e.target.value),
+							})
+						}
 						type="range"
 						className="form-range"
 						value={zoomInLimit}
@@ -47,7 +48,12 @@ const Zoom = () => {
 				<div className="zoom_out_limit">
 					<p className="mb-1">Zoom Out limit</p>
 					<input
-						onChange={(e) => setZoomOutLimit(parseInt(e.target.value))}
+						onChange={e =>
+							setVisualaizer({
+								...visualaizer,
+								zoomOutLimit: parseInt(e.target.value),
+							})
+						}
 						type="range"
 						className="form-range"
 						value={zoomOutLimit}

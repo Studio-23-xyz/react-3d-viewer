@@ -6,9 +6,11 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { OrbitControls } from 'drei';
 import { Physics } from 'use-cannon';
-import { ControlData } from '../../../App';
+import { ControlData } from '../VisualaizerRaj';
 
 const CanvasView = () => {
+	const { visualaizer } = useContext(ControlData);
+	const { model } = visualaizer;
 	const {
 		enableRotation,
 		rotationSpeed,
@@ -18,23 +20,30 @@ const CanvasView = () => {
 		zoomInLimit,
 		zoomOutLimit,
 		background,
-		model,
-	} = useContext(ControlData);
+	} = visualaizer;
 	let finalModel = require('../../../Models/fire.fbx').default;
 
 	let Model = () => {
 		const fbx = useLoader(FBXLoader, finalModel);
 		return <primitive object={fbx} position={[0, -1, 0]} />;
 	};
-	if (model) {
+	if (model !== '') {
+		console.log(model);
 		finalModel = model.url;
 		if (model.extension === 'fbx') {
+			Model = () => {
+				const fbx = useLoader(FBXLoader, finalModel);
+				return <primitive object={fbx} position={[0, -1, 0]} />;
+			};
+			console.log('fbxModel');
 		} else if (model.extension === 'obj') {
+			console.log('objModel');
 			Model = () => {
 				const obj = useLoader(OBJLoader, finalModel);
 				return <primitive object={obj} position={[0, -1, 0]} />;
 			};
-		} else if (model.extension === 'gltf') {
+		} else if (model.extension === 'gltf' || model.extension === 'glb') {
+			console.log('gltfmodel');
 			Model = () => {
 				const gltf = useLoader(GLTFLoader, finalModel);
 				return <primitive object={gltf.scene} position={[0, -1, 0]} />;
