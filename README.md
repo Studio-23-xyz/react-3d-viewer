@@ -73,4 +73,11 @@ Custom styling added automatically when you install the package
 | model | For Change model | '' | { url:  glb/gltf/fbx/obj model url, extension: glb/gltf/fbx/obj } |
 
 
+## <a name="sponsors"></a>Sponsors
+
+The following companies, organizations, and individuals support Messenger-23's ongoing maintenance and development.
+
+<p><a href="https://brainstation-23.com/"><img src="https://brainstation-23.com/wp-content/uploads/2019/02/BS-Logo-Blue_Hr.svg" alt="Automattic" height="undefined"></a></p>
+
+
 
