@@ -32,7 +32,7 @@ or
 
 Here's an example of basic usage:
 
-```
+``` JS
 import React, { useState } from 'react';
 import Visualaizer from 'open-react-3d-viewer/dist/Visualaizer';
 
